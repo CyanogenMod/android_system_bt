@@ -65,6 +65,7 @@
 
 #define COD_UNCLASSIFIED ((0x1F) << 8)
 #define COD_HID_JOYSTICK                    0x0504
+#define COD_HID_JOYSTICK2                   0x0508
 #define COD_HID_KEYBOARD                    0x0540
 #define COD_HID_POINTING                    0x0580
 #define COD_HID_COMBO                       0x05C0
@@ -1037,7 +1038,8 @@ static void btif_dm_pin_req_evt(tBTA_DM_PIN_REQ *p_pin_req)
                 return;
             }
         }
-        else if (check_cod(&bd_addr, COD_HID_JOYSTICK))
+        else if (check_cod(&bd_addr, COD_HID_JOYSTICK) ||
+                 check_cod(&bd_addr, COD_HID_JOYSTICK2))
         {
             if(( btif_storage_is_wiimote (&bd_addr, &bd_name) == TRUE) &&
                 (pairing_cb.autopair_attempts == 0))
